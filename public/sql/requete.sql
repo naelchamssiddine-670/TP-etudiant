@@ -4,7 +4,7 @@ CREATE DATABASE tpetudiant;
 SHOW DATABASES;
 
 
-CREATE TABLE formation IF NOT EXISTS (
+CREATE TABLE formation (
     id INT PRIMARY KEY AUTO_INCREMENT, -- Identifiant unique pour chaque formation
     titre_de_formation VARCHAR(255) NOT NULL, -- Titre de la formation
     lieu VARCHAR(255) NOT NULL, -- Lieu de la formation

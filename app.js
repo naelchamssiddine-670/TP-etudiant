@@ -3,6 +3,7 @@
 const express = require('express');
 
 const mysql = require('mysql2');
+const path = require('path');
 
 // J'importe le piloteur express-myconnection utilisé pour se connecter à la BDD
 const myConnection = require('express-myconnection');
@@ -40,37 +41,29 @@ app.get('/', (req, res) => {
     res.end();
 });
 
-// API ROUTE pour les formation : localhost:3010/api/formation
+// API ROUTE pour les formation : localhost:3010/api/accueil
 app.get('/api/accueil', (req, res) => {
-    // logique de traitement de la requête pour récupérer les formations
+    // logique de traitement de la requête pour récupérer les accueils
     console.log('Je passe dans /api/accueil');
 
-    res.end('accueil');
+    res.render('accueil');
 });
 
-// API ROUTE pour la page formation : localhost:3010/api/formation
-app.get('/api/formation/:id', (req, res) => {
-
+//app.get pour afficher les détails d'une formation spécifique : localhost:3010/api/formation/:id
+app.get('/api/formation', (req, res) => {
     // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
-    console.log('Je passe dans /api/formation/:id');
+    console.log('requete recue dans /api/formation');
+    res.render('formation');
+});
 
-    // je récupère l'id de la formation à partir des paramètres de la requête
-    const id = req.params.id;
-    res.getConnection((erreur, connection) => {
-        if (erreur) {
-            console.error( erreur);
-        } else {
-            connection.query('SELECT * FROM formation WHERE id = ?', [id], (err, resultatformation) => {
-                if (err) {
-                    console.log('Erreur dans la requête SQL SELECT:', err);     
-                } else {
-                    console.log('Mes formations :', resultatformation);
-                    res.render('formation', {formation: resultatformation[0]});
-                }
-            });
-        }
-    });
-});  
+// API ROUTE pour la page etudiant : localhost:3010/api/etudiant
+app.get('/api/etudiant', (req, res) => {
+    // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
+    console.log('Je passe dans /api/etudiant');
+    res.render('etudiant');
+});
+
+
 
 
 
