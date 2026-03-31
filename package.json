@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-myconnection": "^1.0.4",
+    "mysql2": "^3.20.0"
+  },
+  "name": "tp-etudiant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serveur.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naelchamssiddine-670/TP-etudiant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/naelchamssiddine-670/TP-etudiant/issues"
+  },
+  "homepage": "https://github.com/naelchamssiddine-670/TP-etudiant#readme"
+}
