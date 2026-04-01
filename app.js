@@ -3,7 +3,6 @@
 const express = require('express');
 
 const mysql = require('mysql2');
-const path = require('path');
 
 // J'importe le piloteur express-myconnection utilisé pour se connecter à la BDD
 const myConnection = require('express-myconnection');
@@ -19,8 +18,8 @@ const optionsConnexionBasesDonnees = {
     user: 'root',
     password: 'naelchamssiddine@118',
     database: 'tp_etudiant',
-    port: 3010,
-}
+    port: 34,
+};
 /**
  * Middleware pour se connecter à la base de données MySQL2
  * Utilise le piloteur express-myconnection pour établir une connexion à la base de données
@@ -56,38 +55,69 @@ app.get('/api/formation', (req, res) => {
     res.render('formation');
 });
 
+//app.get pour afficher les détails d'une formation spécifique : localhost:3010/api/enseigant/:id
+app.get('/api/enseignant', (req, res) => {
+    // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
+    console.log('requete recue dans /api/enseignant');
+    res.render('enseignant');
+});
+
 // API ROUTE pour la page etudiant : localhost:3010/api/etudiant
 app.get('/api/etudiant', (req, res) => {
     // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
     console.log('Je passe dans /api/etudiant');
     res.render('etudiant');
 });
+// Traiter l'inscription depuis la page /api/etudiant (POST)
+app.post('/api/etudiant', (req, res) => {
+    const { nom, prenom, adresse_postale, email, mot_de_passe, formation_id } = req.body;// Récupère les données du corps de la requête POST pour l'inscription d'un étudiant
+
+    // mot de passe est un champ sensible, on peut choisir de ne pas le logguer ou de le masquer
+    const showPasswords = process.env.LOG_PASSWORDS === 'true';// Si LOG_PASSWORDS=true, on affiche les mots de passe en clair dans les logs (non recommandé en production)
+    if (showPasswords) console.warn('WARNING: LOG_PASSWORDS=true — passwords will be logged in plaintext (insecure).');// Sinon, on masque les mots de passe dans les logs
+    const loggedBody = Object.assign({}, req.body, { mot_de_passe: mot_de_passe ? (showPasswords ? mot_de_passe : '****') : '' });// Crée une copie de req.body avec mot_de_passe masqué ou affiché selon la configuration
+    console.log('POST /api/etudiant body:', loggedBody);// Log la requête POST avec le corps de la requête (mot de passe masqué ou affiché selon la configuration)
+
+    req.getConnection((err, connection) => {// Récupère une connexion à la base de données depuis le pool
+        if (err) {
+            console.error('Erreur connexion BDD:', err);// Log l'erreur de connexion à la base de données
+            return res.status(500).send('Erreur de connexion à la base');// Si une erreur de connexion se produit, log l'erreur et retourne une réponse d'erreur 500
+        }
+        const sql = `INSERT INTO etudiant (nom, prenom, adresse_postale, email, mot_de_passe, formation_id) VALUES (?, ?, ?, ?, ?, ?)`;// Requête SQL pour insérer un nouvel étudiant dans la table "etudiant" avec des paramètres pour éviter les injections SQL
+        const params = [nom, prenom, adresse_postale || '', email, mot_de_passe, formation_id || null];// Paramètres à passer à la requête SQL, en utilisant des valeurs par défaut pour les champs optionnels (adresse_postale et formation_id)
+
+        // Log the SQL and parameters that will be executed (password masked unless enabled)
+        const paramsLogged = params.map(p => (p === mot_de_passe ? (showPasswords ? mot_de_passe : '') : p));// Crée une version des paramètres à logguer avec le mot de passe masqué ou affiché selon la configuration
+        console.log('Executing SQL:', sql);// Log la requête SQL qui va être exécutée
+        console.log('With params:', paramsLogged);// Log les paramètres qui vont être utilisés dans la requête SQL (mot de passe masqué ou affiché selon la configuration)
+
+        connection.query(sql, params, (qErr, result) => {// Exécute la requête SQL avec les paramètres fournis
+            if (qErr) {
+                console.error('Erreur insertion étudiant:', qErr);// Log l'erreur d'insertion dans la base de données
+                return res.status(500).send('Erreur lors de l\'inscription');// Si une erreur d'insertion se produit, log l'erreur et retourne une réponse d'erreur 500
+            }
+            console.log('Insertion réussite, insertId=', result.insertId);// Log le succès de l'insertion avec l'ID de l'étudiant inséré
+            res.redirect('/api/etudiant');// Après l'insertion réussie, redirige vers la page de l'étudiant pour afficher les détails ou la confirmation d'inscription
+        });
+    });
+});
 
 
+app.get('/api/contact', (req, res) => {
+    // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
+    console.log('requete recue dans /api/contact');
+    res.render('contact');
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Recevoir le formulaire de contact
+app.post('/api/contact', (req, res) => {
+    const { nom, email, sujet, message } = req.body;
+    // log minimal (éviter d'exposer des données sensibles)
+    console.log('Contact reçu:', { nom, email, sujet });
+    console.log('Message:', message);
+    // Vous pouvez ici stocker en BDD ou envoyer un email avec nodemailer
+    res.send('<p>Merci — votre message a bien été reçu.</p><p><a href="/api/contact">Retour</a></p>');
+});
 
 
 

@@ -1,0 +1,63 @@
+/* Style global */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #2c3e50;
+}
+
+/* Conteneur */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Titre */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Carte formation */
+.formation {
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Nom de la formation */
+.formation h2 {
+    margin-top: 0;
+    color: #3498db;
+}
+
+/* Description */
+.formation p {
+    font-size: 15px;
+    margin: 10px 0;
+}
+/* Conteneur des boutons */
+.nav {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+a {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    background-color: #3498db;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+/* Hover */
+.nav a:hover {
+    background-color: #2980b9;
+}

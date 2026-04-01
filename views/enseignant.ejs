@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enseignant</title>
+    <link rel="stylesheet" href="/css/formation.css">
+</head>
+<body>
+    <%- include('navbar') %>
+
+    <main style="max-width:1000px;margin:2rem auto;padding:0 1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+            <h1>Équipes pédagogiques</h1>
+            <!-- Icon button to add new teacher -->
+            <a href="/enseignant/nouveau" title="Ajouter un enseignant" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;background:#2b6cb0;color:#fff;padding:.5rem .8rem;border-radius:6px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                Ajouter enseignant
+            </a>
+        </div>
+
+        <section class="formation-grid" style="margin-top:1rem;">
+            <!-- Example team card -->
+            <article class="formation" style="width:100%;">
+                <h2>Equipe Développement</h2>
+                <p><strong>Responsable:</strong> Mme. Dupont</p>
+                <p>Enseignants: Alice, Bob, Chloé</p>
+            </article>
+
+            <article class="formation">
+                <h2>Equipe Réseaux</h2>
+                <p><strong>Responsable:</strong> M. Martin</p>
+                <p>Enseignants: David, Emma</p>
+            </article>
+
+            <article class="formation">
+                <h2>Equipe Cybersécurité</h2>
+                <p><strong>Responsable:</strong> Mme. Leclerc</p>
+                <p>Enseignants: Karim, Léa</p>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
