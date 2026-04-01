@@ -18,7 +18,7 @@ const optionsConnexionBasesDonnees = {
     user: 'root',
     password: 'naelchamssiddine@118',
     database: 'tp_etudiant',
-    port: 34,
+    port: 3012,
 };
 /**
  * Middleware pour se connecter à la base de données MySQL2
@@ -62,26 +62,49 @@ app.get('/api/enseignant', (req, res) => {
     res.render('enseignant');
 });
 
+//API ROUTE pour les etudiant : localhost:3010/api/etudiant
+app.get('/api/enseignant', (req, res) => {
+    // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
+    console.log('Je passe dans /api/enseignant');
+
+    //Je me connecte à la base de données pour récupérer les formations disponibles et les passer à la vue
+    req.getConnection((err, connection) => {
+        if (erreur) {
+            console.log(erreur);
+        }else {
+            connection.query('SELECT * FROM formation', [],(err, formation) => {
+                if (err) {
+                    console.log("Erreur dans la requete SQL SELECT: ", err);
+                } else {
+                    console.log("nouveau enseignant: ", formation);
+                    res.render('enseignant', {formation: formation});
+                }
+            });
+        }
+    });
+});
+
+
 // API ROUTE pour la page etudiant : localhost:3010/api/etudiant
 app.get('/api/etudiant', (req, res) => {
     // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
     console.log('Je passe dans /api/etudiant');
     res.render('etudiant');
 });
-// Traiter l'inscription depuis la page /api/etudiant (POST)
-app.post('/api/etudiant', (req, res) => {
+// Traiter l'inscription depuis la page /api/accueil (POST)
+app.post('/api/accueil', (req, res) => {
     const { nom, prenom, adresse_postale, email, mot_de_passe, formation_id } = req.body;// Récupère les données du corps de la requête POST pour l'inscription d'un étudiant
 
     // mot de passe est un champ sensible, on peut choisir de ne pas le logguer ou de le masquer
     const showPasswords = process.env.LOG_PASSWORDS === 'true';// Si LOG_PASSWORDS=true, on affiche les mots de passe en clair dans les logs (non recommandé en production)
     if (showPasswords) console.warn('WARNING: LOG_PASSWORDS=true — passwords will be logged in plaintext (insecure).');// Sinon, on masque les mots de passe dans les logs
     const loggedBody = Object.assign({}, req.body, { mot_de_passe: mot_de_passe ? (showPasswords ? mot_de_passe : '****') : '' });// Crée une copie de req.body avec mot_de_passe masqué ou affiché selon la configuration
-    console.log('POST /api/etudiant body:', loggedBody);// Log la requête POST avec le corps de la requête (mot de passe masqué ou affiché selon la configuration)
+    console.log('POST /api/accueil body:', loggedBody);// Log la requête POST avec le corps de la requête (mot de passe masqué ou affiché selon la configuration)
 
     req.getConnection((err, connection) => {// Récupère une connexion à la base de données depuis le pool
         if (err) {
             console.error('Erreur connexion BDD:', err);// Log l'erreur de connexion à la base de données
-            return res.status(500).send('Erreur de connexion à la base');// Si une erreur de connexion se produit, log l'erreur et retourne une réponse d'erreur 500
+            return res.status(500).send('Bienvenue sur la page d\'inscription');// Si une erreur de connexion se produit, log l'erreur et retourne une réponse d'erreur 500
         }
         const sql = `INSERT INTO etudiant (nom, prenom, adresse_postale, email, mot_de_passe, formation_id) VALUES (?, ?, ?, ?, ?, ?)`;// Requête SQL pour insérer un nouvel étudiant dans la table "etudiant" avec des paramètres pour éviter les injections SQL
         const params = [nom, prenom, adresse_postale || '', email, mot_de_passe, formation_id || null];// Paramètres à passer à la requête SQL, en utilisant des valeurs par défaut pour les champs optionnels (adresse_postale et formation_id)
@@ -118,11 +141,6 @@ app.post('/api/contact', (req, res) => {
     // Vous pouvez ici stocker en BDD ou envoyer un email avec nodemailer
     res.send('<p>Merci — votre message a bien été reçu.</p><p><a href="/api/contact">Retour</a></p>');
 });
-
-
-
-
-
 
 
 

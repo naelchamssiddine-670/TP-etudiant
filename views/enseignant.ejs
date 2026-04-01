@@ -4,41 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enseignant</title>
-    <link rel="stylesheet" href="/css/formation.css">
+    <link rel="stylesheet" href="/css/enseignant.css">
+    <script src="/js/modal.js"></script>
 </head>
 <body>
     <%- include('navbar') %>
 
-    <main style="max-width:1000px;margin:2rem auto;padding:0 1rem;">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-            <h1>Équipes pédagogiques</h1>
-            <!-- Icon button to add new teacher -->
-            <a href="/enseignant/nouveau" title="Ajouter un enseignant" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;background:#2b6cb0;color:#fff;padding:.5rem .8rem;border-radius:6px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-                Ajouter enseignant
-            </a>
+    <h1>Espace Enseignant</h1>
+
+    <div><!-- Contenu de la page enseignant -->
+        <button id="myBtn">Ajouter Enseignant</button>
+    </div>
+    <!-- Modal d'ajout d'enseignant -->
+     <div id="myModal" class="modal">
+     <div class="modal-content"><!--Bouton de fermeture modal-->
+        <span class="close">&times;</span><!-- Contenu du modal -->
+        <p>Formulaire d'ajout d'enseignant</p><!--En tête du modal-->
+
+
+        <div class="modal-body">
+            <p>Veuillez remplir les informations suivantes :</p>
+
+            <div class="container">
+                <form action="/api/enseignant" method="post">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="nom">Nom:</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" name="nom" id="nommembreEnseignant">
+                        </div>
+                    </div>
+                    <!--ligne 2-->
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="prenom">Prénom:</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" name="prenom" id="prenommembreEnseignant">
+                        </div>
+                    </div>
+                    <!--ligne 3-->
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="date_recrutement">Date de recrutement:</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="date" name="date_recrutement" id="date_recrutement">
+                        </div>
+                    </div>
+                    <!--ligne 4-->
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="matiere_enseignee">Matière enseignée:</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" name="matiere_enseignee" id="matiere_enseignee">
+                        </div>
+                    </div>
+                    <button id="btnEnregistrer">Enregistrer</button>
+                </form>
+            </div>
         </div>
 
-        <section class="formation-grid" style="margin-top:1rem;">
-            <!-- Example team card -->
-            <article class="formation" style="width:100%;">
-                <h2>Equipe Développement</h2>
-                <p><strong>Responsable:</strong> Mme. Dupont</p>
-                <p>Enseignants: Alice, Bob, Chloé</p>
-            </article>
+     </div>
+        <div class="modal-content">
 
-            <article class="formation">
-                <h2>Equipe Réseaux</h2>
-                <p><strong>Responsable:</strong> M. Martin</p>
-                <p>Enseignants: David, Emma</p>
-            </article>
-
-            <article class="formation">
-                <h2>Equipe Cybersécurité</h2>
-                <p><strong>Responsable:</strong> Mme. Leclerc</p>
-                <p>Enseignants: Karim, Léa</p>
-            </article>
-        </section>
-    </main>
+        <!-- Pied de page de modal-->
+        <div class="modal-footer">
+            <h3>Merci de votre contribution !</h3>
+        </div>
+     </div>
 </body>
 </html>
