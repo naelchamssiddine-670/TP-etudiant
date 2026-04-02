@@ -5,43 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
     <link rel="stylesheet" href="/css/accueil.css">
+    <script src="/accueil.js" defer></script>
 </head>
 <body>
     <div class="photo-bg photo-full" style="background-image:url('/image/bienvenue.png')"></div>
     <%- include('navbar') %>
-        <h2>
-            Bienvenue sur la page d'accueil des étudiants:
-        </h2>
+    <h2>Bienvenue sur la page d'accueil des étudiants</h2>
+
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+
 
             <h2>Créer un compte</h2>
 
-    <form action="/api/accueil" method="post">
-            <div>
-            <label for="nom">Nom:</label>
-            <input id="nom" name="nom" required />
+            <form action="/api/accueil" method="post">
+
+                <div><!-- Champ pour le nom -->
+                    <label for="nom">Nom</label>
+                    <input id="nom" name="nom" required />
+                </div>
+
+                <div><!-- Champ pour le prénom -->
+                    <label for="prenom">Prénom</label>
+                    <input id="prenom" name="prenom" required />
+                </div>
+
+                <div><!-- Champ pour l'adresse postale -->
+                    <label for="adresse_postale">Adresse postale</label>
+                    <input id="adresse_postale" name="adresse_postale" />
+                </div>
+
+                <div><!-- Champ pour l'email -->
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" required />
+                </div>
+
+                <div><!-- Champ pour le mot de passe -->
+                    <label for="mot_de_passe">Mot de passe</label>
+                    <input id="mot_de_passe" name="mot_de_passe" type="password" required />
+                </div>
+
+                <div><!-- Champ optionnel pour lier un étudiant à une formation -->
+                    <label for="formation_id">ID formation (optionnel)</label>
+                    <input id="formation_id" name="formation_id" type="number" />
+                </div>
+                <!-- Bouton de soumission -->
+                <button type="submit" class="btn btn-secondary">
+                ✔ S'inscrire
+                </button>
+
+            </form>
         </div>
-        <div>
-            <label for="prenom">Prénom:</label>
-            <input id="prenom" name="prenom" required />
-        </div>
-        <div>
-            <label for="adresse_postale">Adresse postale:</label>
-            <input id="adresse_postale" name="adresse_postale" />
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input id="email" name="email" type="email" required />
-        </div>
-        <div>
-            <label for="mot_de_passe">Mot de passe:</label>
-            <input id="mot_de_passe" name="mot_de_passe" type="password" required />
-        </div>
-        <div>
-            <label for="formation_id">ID formation (optionnel):</label>
-            <input id="formation_id" name="formation_id" type="number" />
-        </div>
-        <button type="submit">S'inscrire</button>
-    </form>
+    </div>
         
 </body>
 </html>

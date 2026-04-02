@@ -5,43 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enseignant</title>
     <link rel="stylesheet" href="/css/enseignant.css">
-    <script src="/js/modal.js"></script>
+    <script src="/js/enseignant.js" defer></script>
 </head>
 <body>
     <%- include('navbar') %>
 
     <h1>Espace Enseignant</h1>
-
-    <div><!-- Contenu de la page enseignant -->
-        <button id="myBtn">Ajouter Enseignant</button>
-    </div>
     <!-- Modal d'ajout d'enseignant -->
      <div id="myModal" class="modal">
-     <div class="modal-content"><!--Bouton de fermeture modal-->
-        <span class="close">&times;</span><!-- Contenu du modal -->
-        <p>Formulaire d'ajout d'enseignant</p><!--En tête du modal-->
 
 
-        <div class="modal-body">
-            <p>Veuillez remplir les informations suivantes :</p>
+        <div class="modal-header">
+            <h2>Formulaire d'ajout d'enseignant:</h2><!--En tête du modal-->
+        </div>
 
+        <div class="modal-body"><!--Corps du modal-->
+            <p id="textenseignant">Veuillez remplir les informations suivantes :</p><!-- Instructions pour remplir le formulaire-->
+
+            <!-- Formulaire d'ajout d'enseignant -->
             <div class="container">
                 <form action="/api/enseignant" method="post">
                     <div class="row">
                         <div class="col-25">
-                            <label for="nom">Nom:</label>
+                            <label for="nomEnseignant">Nom de l'enseignant:</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" name="nom" id="nommembreEnseignant">
+                            <input type="text" name="nom" id="nomEnseignant">
                         </div>
                     </div>
                     <!--ligne 2-->
                     <div class="row">
                         <div class="col-25">
-                            <label for="prenom">Prénom:</label>
+                            <label for="prenomEnseignant">Prénom de l'enseignant:</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" name="prenom" id="prenommembreEnseignant">
+                            <input type="text" name="prenom" id="prenomEnseignant">
                         </div>
                     </div>
                     <!--ligne 3-->
@@ -62,18 +60,22 @@
                             <input type="text" name="matiere_enseignee" id="matiere_enseignee">
                         </div>
                     </div>
-                    <button id="btnEnregistrer">Enregistrer</button>
+                    <!-- Bouton de soumission -->
+                    <div>
+                    <button id="myBtn">Ajouter un enseignant</button>
+                    </div>
                 </form>
             </div>
         </div>
 
      </div>
-        <div class="modal-content">
+        <div class="container">
+        <div class="header">
+        
+        </div>
 
         <!-- Pied de page de modal-->
         <div class="modal-footer">
-            <h3>Merci de votre contribution !</h3>
-        </div>
      </div>
 </body>
 </html>

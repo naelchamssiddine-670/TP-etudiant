@@ -40,12 +40,20 @@ app.get('/', (req, res) => {
     res.end();
 });
 
-// API ROUTE pour les formation : localhost:3010/api/accueil
 app.get('/api/accueil', (req, res) => {
-    // logique de traitement de la requête pour récupérer les accueils
-    console.log('Je passe dans /api/accueil');
-
+    // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
+    console.log('requete recue dans /api/accueil');
     res.render('accueil');
+});
+
+// Recevoir le formulaire d'inscription
+app.post('/api/accueil', (req, res) => {
+    const { nom, email, adresse_postale, formation_id } = req.body;
+    // log minimal (éviter d'exposer des données sensibles)
+    console.log('Inscription reçue:', { nom, email, adresse_postale, formation_id });
+    console.log('Mot de passe:', req.body.mot_de_passe ? '****' : ''); // Ne pas logguer le mot de passe en clair
+    // Vous pouvez ici stocker en BDD ou envoyer un email avec nodemailer
+    res.send('<p>Merci votre inscription a bien été prise en compte.</p><p><a href="/api/accueil">Retour</a></p>');
 });
 
 //app.get pour afficher les détails d'une formation spécifique : localhost:3010/api/formation/:id
@@ -83,14 +91,32 @@ app.get('/api/enseignant', (req, res) => {
         }
     });
 });
+app.post('/api/enseignant', (req, res) => {
+    console.log("Event: Route POST /api/enseignant", req.body.nom);
+    const { nom, prenom, date_recrutement, matiere_enseignee, formation_id } = req.body;
 
+    req.getConnection((err, connection) => {
+        if (err) {
+            console.error("DB conection error:", err);
+            return res.status(500).send('Erreur DB');
+        }
 
-// API ROUTE pour la page etudiant : localhost:3010/api/etudiant
-app.get('/api/etudiant', (req, res) => {
-    // logique de traitement de la requête pour récupérer les détails d'une formation spécifique
-    console.log('Je passe dans /api/etudiant');
-    res.render('etudiant');
+        connection.query(
+            'INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee, formation_id) VALUES (?, ?, ?, ?, ?)',
+            [nom, prenom, date_recrutement, matiere_enseignee, formation_id],
+            (err) => {
+                if (err) {
+                    console.error("Insert error:", err);
+                    return res.status(500).send('Erreur ajout');
+                }
+                console.log("Enseignant ajouté:", nom, prenom);
+                res.redirect('/api/enseignant');
+            }
+        );
+    });
 });
+
+
 // Traiter l'inscription depuis la page /api/accueil (POST)
 app.post('/api/accueil', (req, res) => {
     const { nom, prenom, adresse_postale, email, mot_de_passe, formation_id } = req.body;// Récupère les données du corps de la requête POST pour l'inscription d'un étudiant

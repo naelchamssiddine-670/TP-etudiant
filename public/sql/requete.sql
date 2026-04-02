@@ -35,7 +35,7 @@ VALUES ('Formation en marketing digital', 'paris', '2026-03-31', '2026-04-30', '
 INSERT INTO formation (titre_de_formation, lieu, date_debut, date_fin, description_formation)
 VALUES ('Formation en gestion de projet', 'Marseille', '2026-03-31', '2026-04-30', 'Apprenez les compétences nécessaires pour gérer efficacement des projets et atteindre vos objectifs.');
 
-CREATE TABLE etudiant IF NOT EXISTS (
+CREATE TABLE etudiant (
     id INT PRIMARY KEY AUTO_INCREMENT, -- Identifiant unique pour chaque étudiant
     nom VARCHAR(255) NOT NULL, -- Nom de l'étudiant
     prenom VARCHAR(255) NOT NULL, -- Prénom de l'étudiant
@@ -47,3 +47,36 @@ CREATE TABLE etudiant IF NOT EXISTS (
     formation_id INT, -- Clé étrangère vers la table formation
     FOREIGN KEY (formation_id) REFERENCES formation(id) -- Définir la clé étrangère
 );
+-- Afficher les tables de la base de données
+SHOW DATABASES;
+
+-- Ajouter un étudiant
+CREATE TABLE enseignant (
+    id INT PRIMARY KEY AUTO_INCREMENT, -- Identifiant unique pour chaque enseignant
+    nom VARCHAR(255) NOT NULL, -- Nom de l'enseignant
+    prenom VARCHAR(255) NOT NULL, -- Prénom de l'enseignant
+    date_recrutement DATE NOT NULL UNIQUE, -- Date de recrutement de l'enseignant
+    matiere_enseignee VARCHAR(255) NOT NULL UNIQUE, -- Matière enseignée par l'enseignant
+);
+
+SHOW TABLES;
+
+-- Ajouter des enseignants
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
+VALUES ('Dupont', 'Jean', '2020-01-15', 'Développement web');
+
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
+VALUES ('Martin', 'Sophie', '2019-03-10', 'Maintenance informatique');
+
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
+VALUES ('Durand', 'Pierre', '2021-06-20', 'Cybersécurité');
+
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
+VALUES ('Lefebvre', 'Marie', '2018-11-05', 'Comptabilité');
+
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
+VALUES ('Moreau', 'Luc', '2022-02-28', 'Marketing digital');
+
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
+VALUES ('Garcia', 'Laura', '2017-09-12', 'Gestion de projet');
+

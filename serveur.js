@@ -5,7 +5,7 @@ const http = require('http');
 const app = require('./app');
 
 // Je définis le port sur lequel le serveur va écouter
-const numeroPort = 3021;
+const numeroPort = 3034;
 
 // Je crée le serveur HTTP en utilisant l'application Express
 const server = http.createServer(app);
