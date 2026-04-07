@@ -5,7 +5,7 @@ const http = require('http');
 const app = require('./app');
 
 // Je définis le port sur lequel le serveur va écouter
-const numeroPort = 3034;
+const numeroPort = 3035;
 
 // Je crée le serveur HTTP en utilisant l'application Express
 const server = http.createServer(app);
@@ -14,4 +14,3 @@ const server = http.createServer(app);
 server.listen(numeroPort, () => {
   console.log(`Le serveur du TP-etudiant est à l'écoute en cours d'exécution sur le port ${numeroPort}`);
 });
-

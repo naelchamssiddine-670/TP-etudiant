@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/contact.css">
     <title>Contact</title>
 </head>
@@ -10,20 +11,20 @@
     <%- include('navbar') %>
 
     <main class="contact-form">
-        <h1>Contactez-nous</h1>
+        <h1> 👤 Contactez-nous</h1>
         <p>Pour toute question, n'hésitez pas à nous contacter via ce formulaire.</p>
 
         <form action="/api/contact" method="post">
-            <label for="nom">Nom</label>
+            <label for="nom">Nom:</label>
             <input id="nom" name="nom" type="text" required>
 
-            <label for="email">Email</label>
+            <label for="email">Email:</label>
             <input id="email" name="email" type="email" required>
 
-            <label for="sujet">Sujet</label>
+            <label for="sujet">Sujet:</label>
             <input id="sujet" name="sujet" type="text" required>
 
-            <label for="message">Message</label>
+            <label for="message">Message:</label>
             <textarea id="message" name="message" rows="6" required></textarea>
 
             <button type="submit">Envoyer</button>

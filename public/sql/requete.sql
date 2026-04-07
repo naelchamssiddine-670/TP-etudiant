@@ -1,82 +1,76 @@
--- Créer la base de données
-CREATE DATABASE tpetudiant;
--- Afficher les bases de données existantes
-SHOW DATABASES;
+-- Creer la base de donnees
+CREATE DATABASE tp_etudiant;
+USE tp_etudiant;
 
+-- Afficher les bases de donnees existantes
+SHOW DATABASES;
 
 CREATE TABLE formation (
-    id INT PRIMARY KEY AUTO_INCREMENT, -- Identifiant unique pour chaque formation
-    titre_de_formation VARCHAR(255) NOT NULL, -- Titre de la formation
-    lieu VARCHAR(255) NOT NULL, -- Lieu de la formation
-    date_debut DATE NOT NULL, -- Date de début de la formation
-    date_fin DATE NOT NULL, -- Date de fin de la formation
-    description_formation TEXT -- Description de la formation
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titre_de_formation VARCHAR(255) NOT NULL,
+    lieu VARCHAR(255) NOT NULL,
+    date_debut DATE NOT NULL,
+    date_fin DATE NOT NULL,
+    description_formation TEXT
 );
 
--- Afficher les tables de la base de données
 SHOW TABLES;
 
--- Ajouter une formation
 INSERT INTO formation (titre_de_formation, lieu, date_debut, date_fin, description_formation)
-VALUES ('Formation en développement web', 'Mayotte', '2024-03-31', '2026-04-30', 'Apprenez les bases du développement web avec HTML, CSS et JavaScript.');
+VALUES ('Formation en developpement web', 'Mayotte', '2024-03-31', '2026-04-30', 'Apprenez les bases du developpement web avec HTML, CSS et JavaScript.');
 
 INSERT INTO formation (titre_de_formation, lieu, date_debut, date_fin, description_formation)
-VALUES ('Formation en maintenance informatique', 'Nantes', '2026-03-31', '2027-04-30', 'Découvrez les techniques de maintenance informatique, y compris la gestion des systèmes et la résolution de problèmes.');
+VALUES ('Formation en maintenance informatique', 'Nantes', '2026-03-31', '2027-04-30', 'Decouvrez les techniques de maintenance informatique, y compris la gestion des systemes et la resolution de problemes.');
 
 INSERT INTO formation (titre_de_formation, lieu, date_debut, date_fin, description_formation)
-VALUES ('Formation en cybersécurité', 'Lyon', '2026-03-31', '2026-04-30', 'Apprenez les principes de la cybersécurité et comment protéger les systèmes informatiques contre les menaces.');
+VALUES ('Formation en cybersecurite', 'Lyon', '2026-03-31', '2026-04-30', 'Apprenez les principes de la cybersecurite et comment proteger les systemes informatiques contre les menaces.');
 
 INSERT INTO formation (titre_de_formation, lieu, date_debut, date_fin, description_formation)
-VALUES ('Formation en comptabilité', 'La Réunion', '2026-03-31', '2026-04-30', 'Apprenez les bases de la comptabilité et comment gérer les états financiers.');
+VALUES ('Formation en comptabilite', 'La Reunion', '2026-03-31', '2026-04-30', 'Apprenez les bases de la comptabilite et comment gerer les etats financiers.');
 
 INSERT INTO formation (titre_de_formation, lieu, date_debut, date_fin, description_formation)
-VALUES ('Formation en marketing digital', 'paris', '2026-03-31', '2026-04-30', 'Découvrez les stratégies de marketing digital pour promouvoir votre entreprise en ligne.');
+VALUES ('Formation en marketing digital', 'Paris', '2026-03-31', '2026-04-30', 'Decouvrez les strategies de marketing digital pour promouvoir votre entreprise en ligne.');
 
 INSERT INTO formation (titre_de_formation, lieu, date_debut, date_fin, description_formation)
-VALUES ('Formation en gestion de projet', 'Marseille', '2026-03-31', '2026-04-30', 'Apprenez les compétences nécessaires pour gérer efficacement des projets et atteindre vos objectifs.');
+VALUES ('Formation en gestion de projet', 'Marseille', '2026-03-31', '2026-04-30', 'Apprenez les competences necessaires pour gerer efficacement des projets et atteindre vos objectifs.');
 
 CREATE TABLE etudiant (
-    id INT PRIMARY KEY AUTO_INCREMENT, -- Identifiant unique pour chaque étudiant
-    nom VARCHAR(255) NOT NULL, -- Nom de l'étudiant
-    prenom VARCHAR(255) NOT NULL, -- Prénom de l'étudiant
-    adresse_postale VARCHAR(255) NOT NULL UNIQUE, -- Adresse postale de l'étudiant
-    email VARCHAR(255) NOT NULL UNIQUE, -- Adresse e-mail de l'étudiant
-    mot_de_passe VARCHAR(255) NOT NULL, -- Mot de passe de l'étudiant
-    -- J'ai ajouté une colonne pour stocker l'ID de la formation à laquelle l'étudiant est inscrit
-    -- Cela permettra de faire le lien entre les étudiants et les formations
-    formation_id INT, -- Clé étrangère vers la table formation
-    FOREIGN KEY (formation_id) REFERENCES formation(id) -- Définir la clé étrangère
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    adresse_postale VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    formation_id INT NULL,
+    FOREIGN KEY (formation_id) REFERENCES formation(id)
 );
--- Afficher les tables de la base de données
-SHOW DATABASES;
 
--- Ajouter un étudiant
 CREATE TABLE enseignant (
-    id INT PRIMARY KEY AUTO_INCREMENT, -- Identifiant unique pour chaque enseignant
-    nom VARCHAR(255) NOT NULL, -- Nom de l'enseignant
-    prenom VARCHAR(255) NOT NULL, -- Prénom de l'enseignant
-    date_recrutement DATE NOT NULL UNIQUE, -- Date de recrutement de l'enseignant
-    matiere_enseignee VARCHAR(255) NOT NULL UNIQUE, -- Matière enseignée par l'enseignant
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    date_recrutement DATE NOT NULL,
+    matiere_enseignee VARCHAR(255) NOT NULL,
+    formation_id INT NULL,
+    FOREIGN KEY (formation_id) REFERENCES formation(id)
 );
 
 SHOW TABLES;
 
--- Ajouter des enseignants
-INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
-VALUES ('Dupont', 'Jean', '2020-01-15', 'Développement web');
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee, formation_id)
+VALUES ('Dupont', 'Jean', '2020-01-15', 'Developpement web', 1);
 
-INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
-VALUES ('Martin', 'Sophie', '2019-03-10', 'Maintenance informatique');
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee, formation_id)
+VALUES ('Martin', 'Sophie', '2019-03-10', 'Maintenance informatique', 2);
 
-INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
-VALUES ('Durand', 'Pierre', '2021-06-20', 'Cybersécurité');
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee, formation_id)
+VALUES ('Durand', 'Pierre', '2021-06-20', 'Cybersecurite', 3);
 
-INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
-VALUES ('Lefebvre', 'Marie', '2018-11-05', 'Comptabilité');
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee, formation_id)
+VALUES ('Lefebvre', 'Marie', '2018-11-05', 'Comptabilite', 4);
 
-INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
-VALUES ('Moreau', 'Luc', '2022-02-28', 'Marketing digital');
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee, formation_id)
+VALUES ('Moreau', 'Luc', '2022-02-28', 'Marketing digital', 5);
 
-INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee)
-VALUES ('Garcia', 'Laura', '2017-09-12', 'Gestion de projet');
-
+INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee, formation_id)
+VALUES ('Garcia', 'Laura', '2017-09-12', 'Gestion de projet', 6);

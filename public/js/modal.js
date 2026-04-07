@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('teacher-modal');
-    const openButton = document.getElementById('open-teacher-modal');
-    const closeButton = document.getElementById('close-teacher-modal');
+    const modal = document.getElementById('register-modal');
+    const openButton = document.getElementById('open-register-modal');
+    const closeButton = document.getElementById('close-register-modal');
 
     if (!modal || !openButton || !closeButton) {
         return;
@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const ouvrirFormulaire = () => {
         modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
     };
 
     const fermerFormulaire = () => {
         modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
     };
 
     openButton.addEventListener('click', ouvrirFormulaire);

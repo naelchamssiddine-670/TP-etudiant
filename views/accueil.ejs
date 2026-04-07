@@ -4,61 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
+    <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/accueil.css">
-    <script src="/accueil.js" defer></script>
+    <script src="/js/modal.js" defer></script>
 </head>
 <body>
-    <div class="photo-bg photo-full" style="background-image:url('/image/bienvenue.png')"></div>
     <%- include('navbar') %>
-    <h2>Bienvenue sur la page d'accueil des étudiants</h2>
 
+    <div class="page-background" style="background-image: url('/image/Bienvenue%20(1).png');"></div>
 
-    <!-- MODAL -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
+    
+    <main class="hero">
+        <p class="hero-kicker">Espace etudiant</p>
+        <h1>Bienvenue sur la page d'accueil des etudiants</h1>
+        <p class="hero-text">
+            Retrouvez les informations importantes et creez votre compte en quelques clics.
+        </p>
 
+        <button type="button" id="open-register-modal" class="primary-button">
+            S'inscrire
+        </button>
+    </main>
 
-            <h2>Créer un compte</h2>
+    <div id="register-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="register-title">
+            <button
+                type="button"
+                class="close"
+                id="close-register-modal"
+                aria-label="Fermer le formulaire d'inscription"
+            >
+                &times;
+            </button>
 
-            <form action="/api/accueil" method="post">
+            <h2 id="register-title">Creer un compte</h2>
 
-                <div><!-- Champ pour le nom -->
-                    <label for="nom">Nom</label>
-                    <input id="nom" name="nom" required />
-                </div>
+            <form action="/api/accueil" method="post" class="register-form">
+                <label for="nom">Nom</label>
+                <input id="nom" name="nom" type="text" required>
 
-                <div><!-- Champ pour le prénom -->
-                    <label for="prenom">Prénom</label>
-                    <input id="prenom" name="prenom" required />
-                </div>
+                <label for="prenom">Prenom</label>
+                <input id="prenom" name="prenom" type="text" required>
 
-                <div><!-- Champ pour l'adresse postale -->
-                    <label for="adresse_postale">Adresse postale</label>
-                    <input id="adresse_postale" name="adresse_postale" />
-                </div>
+                <label for="adresse_postale">Adresse postale</label>
+                <input id="adresse_postale" name="adresse_postale" type="text">
 
-                <div><!-- Champ pour l'email -->
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" required />
-                </div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required>
 
-                <div><!-- Champ pour le mot de passe -->
-                    <label for="mot_de_passe">Mot de passe</label>
-                    <input id="mot_de_passe" name="mot_de_passe" type="password" required />
-                </div>
+                <label for="mot_de_passe">Mot de passe</label>
+                <input id="mot_de_passe" name="mot_de_passe" type="password" required>
 
-                <div><!-- Champ optionnel pour lier un étudiant à une formation -->
-                    <label for="formation_id">ID formation (optionnel)</label>
-                    <input id="formation_id" name="formation_id" type="number" />
-                </div>
-                <!-- Bouton de soumission -->
-                <button type="submit" class="btn btn-secondary">
-                ✔ S'inscrire
-                </button>
+                <label for="formation_id">ID formation (optionnel)</label>
+                <input id="formation_id" name="formation_id" type="number">
 
+                <button type="submit" class="primary-button">Valider l'inscription</button>
             </form>
         </div>
     </div>
-        
 </body>
 </html>

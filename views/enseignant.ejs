@@ -11,71 +11,65 @@
     <%- include('navbar') %>
 
     <h1>Espace Enseignant</h1>
-    <!-- Modal d'ajout d'enseignant -->
-     <div id="myModal" class="modal">
 
-
-        <div class="modal-header">
-            <h2>Formulaire d'ajout d'enseignant:</h2><!--En tête du modal-->
+    <div class="container">
+        <div class="header">
+            <h2>Ajouter un enseignant</h2>
+            <p id="textenseignant">Cliquez sur le bouton pour afficher le formulaire d'inscription.</p>
+            <button type="button" id="open-teacher-modal">Ajouter un enseignant</button>
         </div>
 
-        <div class="modal-body"><!--Corps du modal-->
-            <p id="textenseignant">Veuillez remplir les informations suivantes :</p><!-- Instructions pour remplir le formulaire-->
+        <div id="teacher-modal" class="modal">
+            <div class="modal-content">
+                <button type="button" class="close-button" id="close-teacher-modal">&times;</button>
 
-            <!-- Formulaire d'ajout d'enseignant -->
-            <div class="container">
-                <form action="/api/enseignant" method="post">
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="nomEnseignant">Nom de l'enseignant:</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" name="nom" id="nomEnseignant">
-                        </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form action="/api/enseignant" method="post">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="nomEnseignant">Nom de l'enseignant:</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" name="nom" id="nomEnseignant" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="prenomEnseignant">Prenom de l'enseignant:</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" name="prenom" id="prenomEnseignant" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="date_recrutement">Date de recrutement:</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="date" name="date_recrutement" id="date_recrutement" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="matiere_enseignee">Matiere enseignee:</label>
+                                </div>
+                                <div class="col-75">
+                                    <input type="text" name="matiere_enseignee" id="matiere_enseignee" required>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button id="myBtn" type="submit">Valider l'ajout</button>
+                            </div>
+                        </form>
                     </div>
-                    <!--ligne 2-->
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="prenomEnseignant">Prénom de l'enseignant:</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" name="prenom" id="prenomEnseignant">
-                        </div>
-                    </div>
-                    <!--ligne 3-->
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="date_recrutement">Date de recrutement:</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="date" name="date_recrutement" id="date_recrutement">
-                        </div>
-                    </div>
-                    <!--ligne 4-->
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="matiere_enseignee">Matière enseignée:</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" name="matiere_enseignee" id="matiere_enseignee">
-                        </div>
-                    </div>
-                    <!-- Bouton de soumission -->
-                    <div>
-                    <button id="myBtn">Ajouter un enseignant</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-
-     </div>
-        <div class="container">
-        <div class="header">
-        
-        </div>
-
-        <!-- Pied de page de modal-->
-        <div class="modal-footer">
-     </div>
+    </div>
 </body>
 </html>

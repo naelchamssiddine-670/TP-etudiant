@@ -4,7 +4,7 @@ body {
     padding: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     background-color: #f4f6f9;
-    color: #2c3e50;
+    color: #ffffff;
 }
 
 /* Conteneur centré */
@@ -32,7 +32,7 @@ h2 {
 /* Formulaire */
 form {
     width: 400px;
-    background: #ffffff;
+    background: #948989;
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -82,4 +82,56 @@ a {
 /* Hover */
 button:hover {
     background-color: #2980b9;
+}
+body {
+  margin: 0;
+  height: 100vh;
+
+  /* Centrage */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Image de fond */
+  background: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("https://images.unsplash.com/photo-1508780709619-79562169bc64");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: Arial, sans-serif;
+}
+
+.formulaire {
+  background: rgba(255, 255, 255, 0.9); /* effet verre */
+  padding: 30px;
+  border-radius: 12px;
+  width: 300px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  text-align: center;
+  backdrop-filter: blur(8px); /* effet flou moderne */
+}
+
+.formulaire h2 {
+  margin-bottom: 20px;
+}
+
+.formulaire input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+}
+
+.formulaire button {
+  width: 100%;
+  padding: 12px;
+  background: #4facfe;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
 }

@@ -91,26 +91,29 @@ app.get('/api/enseignant', (req, res) => {
         }
     });
 });
+// POST /api/enseignant — ajoute un nouveau plat
 app.post('/api/enseignant', (req, res) => {
     console.log("Event: Route POST /api/enseignant", req.body.nom);
-    const { nom, prenom, date_recrutement, matiere_enseignee, formation_id } = req.body;
+    const { nom, prenom, date_recrutement, matiere_enseignee } = req.body;
 
     req.getConnection((err, connection) => {
         if (err) {
-            console.error("DB conection error:", err);
-            return res.status(500).send('Erreur DB');
+            console.error("DB connection error:", err);
+            return res.status(500).send("Erreur DB");
         }
-
+        // Vérification des données
         connection.query(
-            'INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee, formation_id) VALUES (?, ?, ?, ?, ?)',
-            [nom, prenom, date_recrutement, matiere_enseignee, formation_id],
+            "INSERT INTO enseignant (nom, prenom, date_recrutement, matiere_enseignee) VALUES (?, ?, ?, ?)",
+            [nom, prenom, date_recrutement, matiere_enseignee],
             (err) => {
                 if (err) {
                     console.error("Insert error:", err);
-                    return res.status(500).send('Erreur ajout');
+                    return res.status(500).send("Erreur ajout");
                 }
-                console.log("Enseignant ajouté:", nom, prenom);
-                res.redirect('/api/enseignant');
+                console.log("Enseignant ajouté:", { nom, prenom });
+                res.redirect('/api/accueil');
+                    // Vous pouvez ici stocker en BDD ou envoyer un email avec nodemailer
+                res.send('<p>Merci — votre message a bien été reçu.</p><p><a href="/api/contact">Retour</a></p>');
             }
         );
     });
