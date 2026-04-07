@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Encodage et affichage responsive sur mobile -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Feuilles de style de la navigation et de la page contact -->
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/contact.css">
+
+    <!-- Titre de l'onglet -->
     <title>Contact</title>
 </head>
 <body>
+    <!-- Barre de navigation commune a plusieurs pages -->
     <%- include('navbar') %>
 
+    <!-- Zone principale de la page contact -->
     <main class="contact-form">
+        <!-- Titre de la page -->
         <h1> 👤 Contactez-nous</h1>
+
+        <!-- Petit texte explicatif pour guider l'utilisateur -->
         <p>Pour toute question, n'hésitez pas à nous contacter via ce formulaire.</p>
 
+        <!-- Formulaire envoye vers la route POST /api/contact -->
         <form action="/api/contact" method="post">
+            <!-- Champ nom -->
             <label for="nom">Nom:</label>
             <input id="nom" name="nom" type="text" required>
 
+            <!-- Champ email -->
             <label for="email">Email:</label>
             <input id="email" name="email" type="email" required>
 
+            <!-- Champ sujet -->
             <label for="sujet">Sujet:</label>
             <input id="sujet" name="sujet" type="text" required>
 
+            <!-- Zone de texte pour le message -->
             <label for="message">Message:</label>
             <textarea id="message" name="message" rows="6" required></textarea>
 
+            <!-- Bouton pour envoyer le formulaire -->
             <button type="submit">Envoyer</button>
         </form>
     </main>

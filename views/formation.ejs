@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Encodage des caracteres et affichage adapte au mobile -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fichiers CSS de la navigation et de la page formation -->
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/formation.css">
+
+    <!-- Titre de la page dans l'onglet -->
     <title>Formation</title>
 </head>
 <body>
-    <!-- include le fichier navbar.ejs pour avoir la barre de navigation -->
+    <!-- Inclusion de la barre de navigation -->
     <%- include('navbar') %>
 
+    <!-- Titre principal de la page -->
     <h1>Liste des formations:</h1>
 
+    <!-- Conteneur general des cartes de formation -->
     <div class="container">
+        <!-- Premiere carte formation -->
         <div class="formation">
+            <!-- Nom de la formation -->
             <h2>Formation en développement web:</h2>
+
+            <!-- Lieu et dates -->
             <div><strong>Lieu:</strong> Mayotte — <small>2024-03-31 → 2026-04-30</small></div>
+
+            <!-- Description courte -->
             <p>Apprenez les bases du développement web avec HTML, CSS et JavaScript.</p>
+
+            <!-- Lien externe vers plus d'informations -->
             <a href="https://www.digitalschool.paris/guide/developpement-web/" target="_blank">
             <button> 📘 Plus d'infos sur la formation</button>
             </a>
         </div>
 
+        <!-- Deuxieme carte formation -->
         <div class="formation">
             <h2>Formation en maintenance informatique:</h2>
             <div><strong>Lieu:</strong> Nantes — <small>2026-03-31 → 2027-04-30</small></div>
@@ -32,6 +48,7 @@
             </a>
         </div>
 
+        <!-- Troisieme carte formation -->
         <div class="formation">
             <h2>Formation en cybersécurité:</h2>
             <div><strong>Lieu:</strong> Lyon — <small>2026-03-31 → 2026-04-30</small></div>
@@ -41,6 +58,7 @@
             </a>
         </div>
 
+        <!-- Quatrieme carte formation -->
         <div class="formation">
             <h2>Formation en comptabilité:</h2>
             <div><strong>Lieu:</strong> La Réunion — <small>2026-03-31 → 2026-04-30</small></div>
@@ -50,6 +68,7 @@
             </a>
         </div>
 
+        <!-- Cinquieme carte formation -->
         <div class="formation">
             <h2>Formation en marketing digital:</h2>
             <div><strong>Lieu:</strong> Paris — <small>2026-03-31 → 2026-04-30</small></div>
@@ -59,6 +78,7 @@
             </a>
         </div>
 
+        <!-- Sixieme carte formation -->
         <div class="formation">
             <h2>Formation en gestion de projet:</h2>
             <div><strong>Lieu:</strong> Marseille — <small>2026-03-31 → 2026-04-30</small></div>

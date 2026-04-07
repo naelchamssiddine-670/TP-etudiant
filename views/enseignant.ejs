@@ -1,68 +1,94 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Encodage du texte et adaptation a toutes les tailles d'ecran -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titre affiche dans l'onglet du navigateur -->
     <title>Enseignant</title>
+
+    <!-- CSS et JavaScript de la page enseignant -->
     <link rel="stylesheet" href="/css/enseignant.css">
     <script src="/js/enseignant.js" defer></script>
 </head>
 <body>
+    <!-- Barre de navigation partagee -->
     <%- include('navbar') %>
 
+    <!-- Titre principal de la page -->
     <h1>Espace Enseignant</h1>
 
+    <!-- Carte principale contenant le bouton et la modal -->
     <div class="container">
         <div class="header">
+            <!-- Titre de la section -->
             <h2>Ajouter un enseignant</h2>
+
+            <!-- Texte d'explication -->
             <p id="textenseignant">Cliquez sur le bouton pour afficher le formulaire d'inscription.</p>
+
+            <!-- Bouton qui ouvre la fenetre du formulaire -->
             <button type="button" id="open-teacher-modal">Ajouter un enseignant</button>
         </div>
 
+        <!-- Fenetre modale cachee au depart -->
         <div id="teacher-modal" class="modal">
+            <!-- Boite centrale de la modal -->
             <div class="modal-content">
+                <!-- Bouton de fermeture de la modal -->
                 <button type="button" class="close-button" id="close-teacher-modal">&times;</button>
 
                 <div class="modal-body">
                     <div class="container">
+                        <!-- Formulaire envoye vers la route POST /api/enseignant -->
                         <form action="/api/enseignant" method="post">
                             <div class="row">
                                 <div class="col-25">
+                                    <!-- Label du champ nom -->
                                     <label for="nomEnseignant">Nom de l'enseignant:</label>
                                 </div>
                                 <div class="col-75">
+                                    <!-- Champ nom -->
                                     <input type="text" name="nom" id="nomEnseignant" required>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
+                                    <!-- Label du champ prenom -->
                                     <label for="prenomEnseignant">Prenom de l'enseignant:</label>
                                 </div>
                                 <div class="col-75">
+                                    <!-- Champ prenom -->
                                     <input type="text" name="prenom" id="prenomEnseignant" required>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
+                                    <!-- Label de la date de recrutement -->
                                     <label for="date_recrutement">Date de recrutement:</label>
                                 </div>
                                 <div class="col-75">
+                                    <!-- Champ date -->
                                     <input type="date" name="date_recrutement" id="date_recrutement" required>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-25">
+                                    <!-- Label de la matiere enseignee -->
                                     <label for="matiere_enseignee">Matiere enseignee:</label>
                                 </div>
                                 <div class="col-75">
+                                    <!-- Champ matiere enseignee -->
                                     <input type="text" name="matiere_enseignee" id="matiere_enseignee" required>
                                 </div>
                             </div>
 
                             <div>
+                                <!-- Bouton d'envoi du formulaire -->
                                 <button id="myBtn" type="submit">Valider l'ajout</button>
                             </div>
                         </form>

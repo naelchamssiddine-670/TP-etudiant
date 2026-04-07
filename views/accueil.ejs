@@ -1,63 +1,89 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Encodage des caracteres et adaptation sur mobile -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titre affiche dans l'onglet du navigateur -->
     <title>Accueil</title>
+
+    <!-- Fichiers CSS pour la navigation et la page d'accueil -->
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/accueil.css">
+
+    <!-- Fichier JavaScript qui sert a ouvrir et fermer la fenetre du formulaire -->
     <script src="/js/modal.js" defer></script>
 </head>
 <body>
+    <!-- Inclusion de la barre de navigation commune -->
     <%- include('navbar') %>
 
+    <!-- Image de fond de la page d'accueil -->
     <div class="page-background" style="background-image: url('/image/Bienvenue%20(1).png');"></div>
 
-    
+    <!-- Partie principale visible de la page -->
     <main class="hero">
+        <!-- Petit texte d'introduction -->
         <p class="hero-kicker">Espace etudiant</p>
+
+        <!-- Titre principal de la page -->
         <h1>Bienvenue sur la page d'accueil des etudiants</h1>
+
+        <!-- Texte de presentation -->
         <p class="hero-text">
             Retrouvez les informations importantes et creez votre compte en quelques clics.
         </p>
 
+        <!-- Bouton qui ouvre le formulaire d'inscription -->
         <button type="button" id="open-register-modal" class="primary-button">
             S'inscrire
         </button>
     </main>
 
+    <!-- Fenetre modale cachee au depart -->
     <div id="register-modal" class="modal" aria-hidden="true">
+        <!-- Contenu de la fenetre modale -->
         <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="register-title">
+            <!-- Bouton pour fermer la fenetre -->
             <button
                 type="button"
                 class="close"
                 id="close-register-modal"
-                aria-label="Fermer le formulaire d'inscription"
-            >
+                aria-label="Fermer le formulaire d'inscription">
                 &times;
             </button>
 
+            <!-- Titre du formulaire -->
             <h2 id="register-title">Creer un compte</h2>
 
+            <!-- Formulaire envoye vers la route POST /api/accueil -->
             <form action="/api/accueil" method="post" class="register-form">
+                <!-- Champ nom -->
                 <label for="nom">Nom</label>
                 <input id="nom" name="nom" type="text" required>
 
+                <!-- Champ prenom -->
                 <label for="prenom">Prenom</label>
                 <input id="prenom" name="prenom" type="text" required>
 
+                <!-- Champ adresse postale -->
                 <label for="adresse_postale">Adresse postale</label>
                 <input id="adresse_postale" name="adresse_postale" type="text">
 
+                <!-- Champ email -->
                 <label for="email">Email</label>
                 <input id="email" name="email" type="email" required>
 
+                <!-- Champ mot de passe -->
                 <label for="mot_de_passe">Mot de passe</label>
                 <input id="mot_de_passe" name="mot_de_passe" type="password" required>
 
+                <!-- Champ optionnel pour lier l'etudiant a une formation -->
                 <label for="formation_id">ID formation (optionnel)</label>
                 <input id="formation_id" name="formation_id" type="number">
 
+                <!-- Bouton d'envoi du formulaire -->
                 <button type="submit" class="primary-button">Valider l'inscription</button>
             </form>
         </div>
