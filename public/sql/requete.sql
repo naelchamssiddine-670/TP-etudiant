@@ -93,25 +93,20 @@ CREATE TABLE etudiant (
 -- Creer la table "enseignant".
 -- Cette table stocke les informations des enseignants.
 CREATE TABLE enseignant (
-    -- id unique de chaque enseignant
+    -- id unique pour chaque enseignant
     id INT PRIMARY KEY AUTO_INCREMENT,
-
-    -- nom de l'enseignant
+    -- nom de famille de l'enseignant
     nom VARCHAR(255) NOT NULL,
-
     -- prenom de l'enseignant
     prenom VARCHAR(255) NOT NULL,
-
     -- date de recrutement de l'enseignant
     date_recrutement DATE NOT NULL,
-
-    -- matiere enseignee par l'enseignant
+    -- matiere_enseignee = matiere que l'enseignant enseigne
     matiere_enseignee VARCHAR(255) NOT NULL,
-
-    -- formation associee a l'enseignant
+    -- formation_id permet de relier un enseignant a une formation
+    -- NULL signifie que ce champ peut etre vide
     formation_id INT NULL,
-
-    -- cette cle etrangere relie l'enseignant a une formation existante
+    -- FOREIGN KEY = cle etrangere
     FOREIGN KEY (formation_id) REFERENCES formation(id)
 );
 

@@ -306,3 +306,71 @@ form > div:last-child {
         min-width: 0;
     }
 }
+/* Conteneur principal */
+.cards-contaire {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+}
+
+/* Style de la carte */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+/* Effet au survol */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #007bff;
+}
+
+/* Contenu intérieur */
+.card-content {
+    padding: 20px;
+}
+
+/* Titre (Nom et Prénom) */
+.card-content h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.4rem;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 8px;
+    text-transform: capitalize;
+}
+
+/* Paragraphes de texte */
+.card-content p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Mise en évidence des labels */
+.card-content strong {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* Badge pour l'ID de formation */
+.card-content p:last-child {
+    display: inline-block;
+    background: #e7f3ff;
+    color: #007bff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}

@@ -16,6 +16,7 @@
     <!-- Barre de navigation partagee -->
     <%- include('navbar') %>
 
+
     <!-- Titre principal de la page -->
     <h1>Espace Enseignant</h1>
 
@@ -87,6 +88,17 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-25">
+                                    <!-- Label de l'ID de la formation associee -->
+                                    <label for="formation_id">ID de la formation associee:</label>
+                                </div>
+                                <div class="col-75">
+                                    <!-- Champ ID formation -->
+                                    <input type="number" name="formation_id" id="formation_id">
+                                </div>
+                            </div>
+
                             <div>
                                 <!-- Bouton d'envoi du formulaire -->
                                 <button id="myBtn" type="submit">Valider l'ajout</button>
@@ -97,5 +109,23 @@
             </div>
         </div>
     </div>
+
+<!-- Section contenant les cartes des enseignants -->
+<section class="cards-contaire"><!-- CORRIGÉ : Correction du nom de la classe pour correspondre au CSS -->
+<%resultatEnseignant.forEach(resultat => { %><!-- Boucle pour afficher une carte pour chaque enseignant dans le resultat de la requete SQL -->
+    <div class="card"><!-- Carte individuelle pour un enseignant -->
+        <div class="card-content"><!-- Contenu de la carte -->
+            <!-- Affichage des informations de l'enseignant -->
+        <h2><%= resultat.nom %> <%= resultat.prenom %></h2><!-- Affichage du nom et prenom de l'enseignant -->
+        <p><strong>Date de recrutement:</strong> <%= resultat.date_recrutement.toISOString().split('T')[0] %></p>
+        <!-- Affichage de la date de recrutement au format YYYY-MM-DD -->
+        <p><strong>Matiere enseignee:</strong> <%= resultat.matiere_enseignee %></p>
+        <!-- Affichage de la matiere enseignee -->
+        <p><strong>ID de la formation associee:</strong> <%= resultat.formation_id %></p>
+        <!-- Affichage de l'ID de la formation associee -->
+    </div>
+</div>
+<% }); %>
+</section>
 </body>
 </html>
