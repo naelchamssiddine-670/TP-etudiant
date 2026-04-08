@@ -1,5 +1,5 @@
 :root {
-    --page-overlay: rgba(7, 19, 38, 0.68);
+    --page-overlay: rgba(7, 19, 38, 0.32);
     --panel-bg: rgba(255, 255, 255, 0.94);
     --panel-border: rgba(255, 255, 255, 0.28);
     --text-main: #0f172a;
@@ -94,6 +94,8 @@ body {
     background:
         linear-gradient(var(--page-overlay), var(--page-overlay)),
         center / cover no-repeat;
+    background-position: center center;
+    filter: saturate(1.05) contrast(1.02);
     z-index: -1;
 }
 
@@ -105,6 +107,20 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 110px 24px 40px;
+    max-width: 760px;
+    margin: auto;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 32px;
+    background: rgba(15, 23, 42, 0.40);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+    z-index: -1;
 }
 
 .hero-kicker {
@@ -120,6 +136,7 @@ body {
     max-width: 720px;
     font-size: clamp(2rem, 4vw, 3.5rem);
     line-height: 1.1;
+    text-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
 }
 
 .hero-text {
@@ -127,6 +144,7 @@ body {
     max-width: 620px;
     font-size: 1.05rem;
     line-height: 1.6;
+    text-shadow: 0 6px 18px rgba(15, 23, 42, 0.28);
 }
 
 .primary-button {
@@ -220,6 +238,11 @@ body {
         padding-top: 96px;
     }
 
+    .hero::before {
+        inset: 90px 16px 24px;
+        border-radius: 24px;
+    }
+
     .modal {
         padding: 16px;
     }
@@ -228,4 +251,3 @@ body {
         padding: 24px 20px;
     }
 }
-

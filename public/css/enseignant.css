@@ -374,3 +374,20 @@ form > div:last-child {
     font-size: 0.85rem;
     margin-top: 10px;
 }
+
+.delete-form {
+    margin-top: 18px;
+}
+
+.delete-button {
+    min-width: 0;
+    width: 100%;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    box-shadow: 0 12px 24px rgba(220, 38, 38, 0.22);
+}
+
+.delete-button:hover {
+    background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+    box-shadow: 0 16px 28px rgba(220, 38, 38, 0.28);
+}

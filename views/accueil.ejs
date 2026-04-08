@@ -4,8 +4,6 @@
     <!-- Encodage des caracteres et adaptation sur mobile -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="3;url=/api/accueil" />
-
     <!-- Titre affiche dans l'onglet du navigateur -->
     <title>Accueil</title>
 
@@ -22,7 +20,7 @@
     <%- include('navbar') %>
 
     <!-- Image de fond de la page d'accueil -->
-    <div class="page-background" style="background-image: url('/image/Bienvenue%20(1).png');"></div>
+    <div class="page-background" style="background-image: url('/image/accueil-hero.svg');"></div>
 
     <!-- Partie principale visible de la page -->
     <main class="hero">
@@ -34,7 +32,7 @@
 
         <!-- Texte de presentation -->
         <p class="hero-text">
-            Retrouvez les informations importantes et creez votre compte en quelques clics.
+            Retrouvez les informations importantes et créez votre compte en quelques clics.
         </p>
 
         <!-- Bouton qui ouvre le formulaire d'inscription -->
@@ -57,7 +55,7 @@
             </button>
 
             <!-- Titre du formulaire -->
-            <h2 id="register-title">Creer un compte</h2>
+            <h2 id="register-title">Créer un compte</h2>
 
             <!-- Formulaire envoye vers la route POST /api/accueil -->
             <form action="/api/accueil" method="post" class="register-form">

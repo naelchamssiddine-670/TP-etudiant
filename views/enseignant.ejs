@@ -123,6 +123,9 @@
         <!-- Affichage de la matiere enseignee -->
         <p><strong>ID de la formation associee:</strong> <%= resultat.formation_id %></p>
         <!-- Affichage de l'ID de la formation associee -->
+        <form action="/api/enseignant/<%= resultat.id %>/supprimer" method="post" class="delete-form">
+            <button type="submit" class="delete-button">Supprimer</button>
+        </form>
     </div>
 </div>
 <% }); %>
